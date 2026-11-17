@@ -35,7 +35,7 @@ print(df_test[df_test['category'] == 'contactless_not_working']['text'])
 # count vectorising
 cvect = CountVectorizer()
 # fit and transform train data
-trans_data = cvect.fit_transform(inputs_train)
+x_train = cvect.fit_transform(inputs_train)
 print(cvect.get_feature_names_out())
-print(trans_data) # toarray() is discoureged, as it consumes memory just to "shape" the data into a normal matrix; for even bigger data sets, it could cause a crash
-print(trans_data.shape)
+print(x_train) # toarray() is discoureged, as it consumes memory just to "shape" the data into a normal matrix; for even bigger data sets, it could cause a crash
+print(x_train.shape)
