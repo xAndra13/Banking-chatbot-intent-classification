@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # import count vectoriser
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
 
 # Data set that was used - Banking77
 # ensure internet connection for data downloading
@@ -52,6 +53,16 @@ print(x_train) # toarray() is discoureged, as it consumes memory just to "shape"
 print(x_train.shape)
 
 # transform the test data
+# only transform, we do not want it to learn any new vocabularty by calling fit
 x_test = cvect.transform(inputs_test)
 print(x_test)
 print(x_test.shape)
+
+# MODEL 1 - NAIVE BAYES (Multinomial Naive Bayes)
+mnb = MultinomialNB()
+mnb.fit(x_train, category_train)
+print("Train accuracy:", mnb.score(x_train, category_train))
+print("Test accuracy:", mnb.score(x_test, category_test))
+y_pred = mnb.predict(x_test)
+print(y_pred)
+print(y_pred.shape)
